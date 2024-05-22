@@ -259,16 +259,22 @@ class SwitchTransformerBlock(nn.Module):
             Tensor: The output tensor.
 
         """
+        start = time.time()
         resi = x
         x, _, _ = self.attn(x)
         x = x + resi
         x = self.add_norm(x)
         add_normed = x
+        end = time.time()
+        print(f"Time taken for Attention and norm: {end-start}")
         
         ##### MoE #####
+        start = time.time()
         x, _ = self.ffn(x)
         x = x + add_normed
         x = self.add_norm(x)
+        end = time.time()
+        print(f"Time taken for ffn and norm: {end-start}")
         return x
 
 
@@ -344,7 +350,10 @@ class SwitchTransformer(nn.Module):
             Tensor: The output tensor of shape (batch_size, sequence_length, num_tokens).
         """
         # Embed tokens through embedding layer
+        start = time.time()
         x = self.embedding(x)
+        end = time.time()
+        print(f"Time taken for embedding: {end-start}")
         
         # Pass through the transformer block with MoE, it's in modulelist
         for (idx,layer) in enumerate(self.layers):
