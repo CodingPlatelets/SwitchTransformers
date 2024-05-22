@@ -159,6 +159,8 @@ class SwitchMoE(nn.Module):
         print(f"Time taken for GATE_scores: {end-start}")
 
         # Dispatch to experts
+
+        start = time.time()
         expert_outputs = [expert(x) for expert in self.experts]
 
         # Check if any gate scores are nan and handle
@@ -176,12 +178,11 @@ class SwitchMoE(nn.Module):
             ] = 0
 
         # Combine expert outputs and gating scores
-        start = time.time()
         moe_output = torch.sum(
             gate_scores.unsqueeze(-2) * stacked_expert_outputs, dim=-1
         )
         end = time.time()
-        print(f"Time taken for MOE_output: {end-start}")
+        print(f"Time taken for Expert_output: {end-start}")
 
         return moe_output, loss
 
