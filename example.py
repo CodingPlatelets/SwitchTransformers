@@ -11,7 +11,7 @@ x = torch.randint(0, 100, (1, 10))
 # heads: the number of attention heads
 # dim_head: the dimensionality of each attention head
 model = SwitchTransformer(
-    num_tokens=1_000_000, dim=512, heads=8, dim_head=64,depth=4
+    num_tokens=10_000_000, dim=512, heads=8, dim_head=64,depth=4
 )
 
 # Pass the input tensor through the model
