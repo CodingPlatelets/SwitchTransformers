@@ -1,4 +1,5 @@
 import torch
+import time
 import torch.nn.functional as F
 from torch import Tensor, nn
 from zeta.nn import FeedForward, MultiQueryAttention
@@ -150,9 +151,12 @@ class SwitchMoE(nn.Module):
 
         """
         # (batch_size, seq_len, num_experts)
+        start = time.time()
         gate_scores, loss = self.gate(
             x, use_aux_loss=self.use_aux_loss
         )
+        end = time.time()
+        print(f"Time taken for GATE_scores: {end-start}")
 
         # Dispatch to experts
         expert_outputs = [expert(x) for expert in self.experts]
@@ -172,9 +176,12 @@ class SwitchMoE(nn.Module):
             ] = 0
 
         # Combine expert outputs and gating scores
+        start = time.time()
         moe_output = torch.sum(
             gate_scores.unsqueeze(-2) * stacked_expert_outputs, dim=-1
         )
+        end = time.time()
+        print(f"Time taken for MOE_output: {end-start}")
 
         return moe_output, loss
 
@@ -339,8 +346,11 @@ class SwitchTransformer(nn.Module):
         x = self.embedding(x)
         
         # Pass through the transformer block with MoE, it's in modulelist
-        for layer in self.layers:
+        for (idx,layer) in enumerate(self.layers):
+            start = time.time()
             x = layer(x)
+            end = time.time()
+            print(f"Time taken for {idx} layer: {end-start}")
 
         # Project to output tokens
         x = self.to_out(x)
