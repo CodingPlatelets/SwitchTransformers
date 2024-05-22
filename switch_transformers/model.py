@@ -353,5 +353,8 @@ class SwitchTransformer(nn.Module):
             print(f"Time taken for {idx} layer: {end-start}")
 
         # Project to output tokens
+        start = time.time()
         x = self.to_out(x)
+        end = time.time()
+        print(f"Time taken for final to_out: {end-start}")
         return x
