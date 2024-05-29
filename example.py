@@ -16,9 +16,17 @@ print()
 # dim: the dimensionality of the model
 # heads: the number of attention heads
 # dim_head: the dimensionality of each attention head
-model = SwitchTransformer(
-    num_tokens=1_000_000, dim=1024, heads=8, dim_head=128, depth=10
-).cuda()
+model = (
+    SwitchTransformer(
+        num_tokens=1_000_000,
+        dim=1024,
+        heads=8,
+        dim_head=128,
+        depth=10,
+    )
+    .cuda()
+    .eval()
+)
 
 
 # Pass the input tensor through the model
@@ -35,7 +43,7 @@ print(f"the total time is {end_all - start_all}")
 # Print the shape of the output tensor
 print(prof.key_averages().table(sort_by="cuda_time_total"))
 
-print(prof.key_averages().table(sort_by="cuda_memory_usage"))
+# print(prof.key_averages().table(sort_by="cuda_memory_usage"))
 
 prof.export_chrome_trace("trace.json")
 print(out.shape)

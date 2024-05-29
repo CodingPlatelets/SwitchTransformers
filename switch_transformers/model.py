@@ -355,17 +355,18 @@ class SwitchTransformer(nn.Module):
         x = self.embedding(x)
         end = time.time()
         print(f"Time taken for embedding: {end-start}")
-
+        print(x.device)
         # Pass through the transformer block with MoE, it's in modulelist
         for idx, layer in enumerate(self.layers):
             start = time.time()
             x = layer(x)
             end = time.time()
             print(f"Time taken for {idx} layer: {end-start}")
-
+            print(x.device)
         # Project to output tokens
         start = time.time()
         x = self.to_out(x)
+        print(x.device)
         end = time.time()
         print(f"Time taken for final to_out: {end-start}")
         return x
