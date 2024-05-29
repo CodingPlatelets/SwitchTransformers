@@ -3,6 +3,7 @@ import time
 import torch.nn.functional as F
 from torch import Tensor, nn
 from zeta.nn import FeedForward, MultiQueryAttention
+from torch.profiler import profile, record_function, ProfilerActivity
 
 
 class SwitchGate(nn.Module):
@@ -244,9 +245,8 @@ class SwitchTransformerBlock(nn.Module):
         self.ffn = SwitchMoE(
             dim, dim * mult, dim, num_experts, *args, **kwargs
         )
-        
-        self.add_norm = nn.LayerNorm(dim)
 
+        self.add_norm = nn.LayerNorm(dim)
 
     def forward(self, x: Tensor):
         """
@@ -267,7 +267,7 @@ class SwitchTransformerBlock(nn.Module):
         add_normed = x
         end = time.time()
         print(f"Time taken for Attention and norm: {end-start}")
-        
+
         ##### MoE #####
         start = time.time()
         x, _ = self.ffn(x)
@@ -293,6 +293,7 @@ class SwitchTransformer(nn.Module):
         *args: Additional positional arguments.
         **kwargs: Additional keyword arguments.
     """
+
     def __init__(
         self,
         num_tokens: int,
@@ -318,7 +319,7 @@ class SwitchTransformer(nn.Module):
 
         self.embedding = nn.Embedding(num_tokens, dim)
         self.layers = nn.ModuleList([])
-        
+
         for _ in range(depth):
             self.layers.append(
                 SwitchTransformerBlock(
@@ -354,9 +355,9 @@ class SwitchTransformer(nn.Module):
         x = self.embedding(x)
         end = time.time()
         print(f"Time taken for embedding: {end-start}")
-        
+
         # Pass through the transformer block with MoE, it's in modulelist
-        for (idx,layer) in enumerate(self.layers):
+        for idx, layer in enumerate(self.layers):
             start = time.time()
             x = layer(x)
             end = time.time()
