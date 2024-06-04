@@ -18,7 +18,7 @@ print()
 # dim_head: the dimensionality of each attention head
 model = (
     SwitchTransformer(
-        num_tokens=1_000_000,
+        num_tokens=10_000_000,
         dim=1024,
         heads=8,
         dim_head=128,
