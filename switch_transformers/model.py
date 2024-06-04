@@ -302,7 +302,7 @@ class SwitchTransformer(nn.Module):
         dim_head: int = 64,
         mult: int = 4,
         dropout: float = 0.1,
-        num_experts: int = 3,
+        num_experts: int = 4,
         depth: int = 4,
         *args,
         **kwargs,
