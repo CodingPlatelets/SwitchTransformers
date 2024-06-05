@@ -227,7 +227,7 @@ class SwitchTransformerBlock(nn.Module):
         dim_head: int,
         mult: int = 4,
         dropout: float = 0.1,
-        num_experts: int = 3,
+        num_experts: int = 64,
         *args,
         **kwargs,
     ):
@@ -240,13 +240,13 @@ class SwitchTransformerBlock(nn.Module):
 
         self.attn = MultiQueryAttention(
             dim, heads, qk_ln=True * args, **kwargs
-        )
+        ).cuda()
 
         self.ffn = SwitchMoE(
             dim, dim * mult, dim, num_experts, *args, **kwargs
-        )
+        ).cuda()
 
-        self.add_norm = nn.LayerNorm(dim)
+        self.add_norm = nn.LayerNorm(dim).cuda()
 
     def forward(self, x: Tensor):
         """
@@ -302,7 +302,7 @@ class SwitchTransformer(nn.Module):
         dim_head: int = 64,
         mult: int = 4,
         dropout: float = 0.1,
-        num_experts: int = 4,
+        num_experts: int = 64,
         depth: int = 4,
         *args,
         **kwargs,
@@ -331,7 +331,7 @@ class SwitchTransformer(nn.Module):
                     num_experts,
                     *args,
                     **kwargs,
-                )
+                ).cuda()
             )
 
         self.to_out = nn.Sequential(

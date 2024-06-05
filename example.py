@@ -6,7 +6,7 @@ from torch.profiler import profile, record_function, ProfilerActivity
 start_all = time.time()
 # Generate a random tensor of shape (1, 10) with values between 0 and 100
 start = time.time()
-x = torch.randint(0, 100_000, (4, 128)).cuda()
+x = torch.randint(0, 1_000_000, (8, 512)).cuda()
 end = time.time()
 print(f"the modle generate time is {end - start}")
 print()
@@ -18,7 +18,7 @@ print()
 # dim_head: the dimensionality of each attention head
 model = (
     SwitchTransformer(
-        num_tokens=100_000,
+        num_tokens=1_000_000,
         dim=1024,
         heads=8,
         dim_head=128,

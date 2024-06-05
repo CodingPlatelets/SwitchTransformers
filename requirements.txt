@@ -1,3 +1,2 @@
-torch
-zetascale
-swarms
+torch==2.3.0
+zeta==0.7b1

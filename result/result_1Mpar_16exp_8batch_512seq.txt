@@ -1,0 +1,18 @@
+the modle generate time is 0.15895915031433105
+
+Time taken for embedding: 0.34473466873168945
+cuda:0
+Time taken for Attention and norm: 0.07808423042297363
+Time taken for GATE_scores: 0.02133035659790039
+Time taken for Expert_output: 0.39842915534973145
+Time taken for ffn and norm: 0.4201028347015381
+Time taken for 0 layer: 0.4982423782348633
+cuda:0
+Time taken for Attention and norm: 0.001214742660522461
+Time taken for GATE_scores: 0.0006787776947021484
+Time taken for Expert_output: 0.4051964282989502
+Time taken for ffn and norm: 0.4064598083496094
+Time taken for 1 layer: 0.4077146053314209
+cuda:0
+Time taken for Attention and norm: 0.004294872283935547
+Time taken for GATE_scores: 0.0025377273559570312
