@@ -262,19 +262,24 @@ class SwitchTransformerBlock(nn.Module):
         start = time.time()
         resi = x
         x, _, _ = self.attn(x)
+        start = time.time()
+        print(f"Time taken for Attention: {end-start}")
         x = x + resi
         x = self.add_norm(x)
         add_normed = x
         end = time.time()
-        print(f"Time taken for Attention and norm: {end-start}")
+        print(f"Time taken for Add and norm: {end-start}")
 
         ##### MoE #####
         start = time.time()
         x, _ = self.ffn(x)
+        end = time.time()
+        print(f"Time taken for ffn: {end-start}")
+        start = time.time()
         x = x + add_normed
         x = self.add_norm(x)
         end = time.time()
-        print(f"Time taken for ffn and norm: {end-start}")
+        print(f"Time taken for norm: {end-start}")
         return x
 
 
