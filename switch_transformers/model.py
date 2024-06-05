@@ -227,7 +227,7 @@ class SwitchTransformerBlock(nn.Module):
         dim_head: int,
         mult: int = 4,
         dropout: float = 0.1,
-        num_experts: int = 64,
+        num_experts: int = 32,
         *args,
         **kwargs,
     ):
@@ -302,7 +302,7 @@ class SwitchTransformer(nn.Module):
         dim_head: int = 64,
         mult: int = 4,
         dropout: float = 0.1,
-        num_experts: int = 64,
+        num_experts: int = 32,
         depth: int = 4,
         *args,
         **kwargs,

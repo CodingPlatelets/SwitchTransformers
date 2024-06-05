@@ -1,0 +1,64 @@
+the modle generate time is 0.2672293186187744
+
+Time taken for embedding: 0.4941563606262207
+cuda:0
+Time taken for Attention and norm: 0.7231180667877197
+Time taken for GATE_scores: 0.27069854736328125
+Time taken for Expert_output: 0.2425391674041748
+Time taken for ffn and norm: 0.5135688781738281
+Time taken for 0 layer: 1.2367808818817139
+cuda:0
+Time taken for Attention and norm: 0.002659320831298828
+Time taken for GATE_scores: 0.0005283355712890625
+Time taken for Expert_output: 0.07143044471740723
+Time taken for ffn and norm: 0.07216191291809082
+Time taken for 1 layer: 0.07485747337341309
+cuda:0
+Time taken for Attention and norm: 0.0024039745330810547
+Time taken for GATE_scores: 0.0005095005035400391
+Time taken for Expert_output: 0.1392221450805664
+Time taken for ffn and norm: 0.13996410369873047
+Time taken for 2 layer: 0.14240241050720215
+cuda:0
+Time taken for Attention and norm: 0.0024247169494628906
+Time taken for GATE_scores: 0.0005197525024414062
+Time taken for Expert_output: 0.07171821594238281
+Time taken for ffn and norm: 0.0724191665649414
+Time taken for 3 layer: 0.0748741626739502
+cuda:0
+Time taken for Attention and norm: 0.0017561912536621094
+Time taken for GATE_scores: 0.00036978721618652344
+Time taken for Expert_output: 0.08888506889343262
+Time taken for ffn and norm: 0.08939790725708008
+Time taken for 4 layer: 0.09117746353149414
+cuda:0
+Time taken for Attention and norm: 0.001645803451538086
+Time taken for GATE_scores: 0.0003521442413330078
+Time taken for Expert_output: 0.07323575019836426
+Time taken for ffn and norm: 0.07371926307678223
+Time taken for 5 layer: 0.07538723945617676
+cuda:0
+Time taken for Attention and norm: 0.0015909671783447266
+Time taken for GATE_scores: 0.0003368854522705078
+Time taken for Expert_output: 0.08909463882446289
+Time taken for ffn and norm: 0.08956646919250488
+Time taken for 6 layer: 0.09117984771728516
+cuda:0
+Time taken for Attention and norm: 0.001603841781616211
+Time taken for GATE_scores: 0.0003402233123779297
+Time taken for Expert_output: 0.12495207786560059
+Time taken for ffn and norm: 0.1254270076751709
+Time taken for 7 layer: 0.12705206871032715
+cuda:0
+Time taken for Attention and norm: 0.00156402587890625
+Time taken for GATE_scores: 0.000331878662109375
+Time taken for Expert_output: 0.07428860664367676
+Time taken for ffn and norm: 0.07486176490783691
+Time taken for 8 layer: 0.07645106315612793
+cuda:0
+Time taken for Attention and norm: 0.001894235610961914
+Time taken for GATE_scores: 0.0003979206085205078
+Time taken for Expert_output: 0.08668231964111328
+Time taken for ffn and norm: 0.08722925186157227
+Time taken for 9 layer: 0.08915138244628906
+cuda:0

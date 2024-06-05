@@ -6,7 +6,7 @@ from torch.profiler import profile, record_function, ProfilerActivity
 start_all = time.time()
 # Generate a random tensor of shape (1, 10) with values between 0 and 100
 start = time.time()
-x = torch.randint(0, 1_000_000, (8, 512)).cuda()
+x = torch.randint(0, 1_000_000, (8, 128)).cuda()
 end = time.time()
 print(f"the modle generate time is {end - start}")
 print()
