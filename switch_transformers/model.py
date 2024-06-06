@@ -227,7 +227,7 @@ class SwitchTransformerBlock(nn.Module):
         dim_head: int,
         mult: int = 4,
         dropout: float = 0.1,
-        num_experts: int = 32,
+        num_experts: int = 8,
         *args,
         **kwargs,
     ):
@@ -262,8 +262,9 @@ class SwitchTransformerBlock(nn.Module):
         start = time.time()
         resi = x
         x, _, _ = self.attn(x)
-        start = time.time()
+        end = time.time()
         print(f"Time taken for Attention: {end-start}")
+        start = time.time()
         x = x + resi
         x = self.add_norm(x)
         add_normed = x
@@ -307,7 +308,7 @@ class SwitchTransformer(nn.Module):
         dim_head: int = 64,
         mult: int = 4,
         dropout: float = 0.1,
-        num_experts: int = 32,
+        num_experts: int = 8,
         depth: int = 4,
         *args,
         **kwargs,
